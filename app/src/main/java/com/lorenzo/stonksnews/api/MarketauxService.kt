@@ -4,6 +4,6 @@ import com.lorenzo.stonksnews.model.response.NewsListResponse
 import retrofit2.http.GET
 
 interface MarketauxService {
-    @GET("news/all$LIST_QUERY")
+    @GET("news/all$API_QUERY")
     suspend fun getAllNews(): NewsListResponse
 }

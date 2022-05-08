@@ -79,6 +79,7 @@ class HomeFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
+            holder.binding.newsItem = news[position]
             holder.bindNews(news[position])
         }
 

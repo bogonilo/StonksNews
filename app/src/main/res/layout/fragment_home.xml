@@ -10,5 +10,7 @@
         android:id="@+id/rvNews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="?actionBarSize"
+        tools:listitem="@layout/item_news"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
