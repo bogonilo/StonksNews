@@ -24,5 +24,5 @@ object MarketauxNetwork {
             .build()
     }
 
-    val marketaux = retrofit.create(MarketauxService::class.java)
+    val marketaux: MarketauxService = retrofit.create(MarketauxService::class.java)
 }
