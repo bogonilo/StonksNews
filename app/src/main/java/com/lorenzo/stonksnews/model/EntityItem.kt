@@ -1,9 +1,13 @@
 package com.lorenzo.stonksnews.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
-data class EntityItem(
+@Entity
+data class EntityItem constructor(
     val symbol: String,
     val name: String,
     val exchange: String,
@@ -14,4 +18,4 @@ data class EntityItem(
     val match_score: Float,
     val sentiment_score: Float,
     val highlights: List<Highlight>
-)
+) : Serializable

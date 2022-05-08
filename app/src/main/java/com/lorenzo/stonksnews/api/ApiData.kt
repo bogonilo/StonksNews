@@ -8,3 +8,4 @@ const val API_QUERY = "?api_token=$API_TOKEN&language=$BASE_LANGUAGE"
 
 const val BASE_URL = "https://api.marketaux.com/v1/"
 
+const val LIST_QUERY = "$API_QUERY?limit=3"

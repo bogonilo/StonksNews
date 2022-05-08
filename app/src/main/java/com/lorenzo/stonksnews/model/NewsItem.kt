@@ -1,11 +1,17 @@
 package com.lorenzo.stonksnews.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.lorenzo.stonksnews.database.EntityItemListConverter
+import com.lorenzo.stonksnews.database.NewsItemListConverter
 import com.squareup.moshi.JsonClass
-import java.util.*
 
 @JsonClass(generateAdapter = true)
-data class NewsItem(
-    val uuid: String,
+@Entity
+@TypeConverters(EntityItemListConverter::class, NewsItemListConverter::class)
+data class NewsItem constructor(
+    @PrimaryKey val uuid: String,
     val title: String,
     val description: String,
     val keywords: String,

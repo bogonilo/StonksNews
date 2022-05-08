@@ -2,30 +2,34 @@ package com.lorenzo.stonksnews.viewModel
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.lorenzo.stonksnews.database.StonksDatabase
+import com.lorenzo.stonksnews.model.NewsItem
 import com.lorenzo.stonksnews.repository.NewsListRepository
 import kotlinx.coroutines.launch
+import java.io.IOException
 
-class NewsListViewModel : ViewModel() {
-    private val repository = NewsListRepository()
+class NewsListViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = NewsListRepository(StonksDatabase.getDatabase(application))
 
-    fun getAllNews() {
+    val allNews: LiveData<List<NewsItem>>
+    get() {
         viewModelScope.launch {
-            val news = repository.getAllNews()
-            Log.d("Laurentio - getAllNews", news.toString())
+            try {
+                repository.refreshNews()
+            } catch (error: IOException) {
+                Log.e("StonksNews", error.message ?: "error executing refreshNews")
+            }
         }
+
+        return repository.news
     }
 
-    /**
-     * Factory for constructing DevByteViewModel with parameter
-     */
-    class Factory : ViewModelProvider.Factory {
+    class Factory(val application: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(NewsListViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return NewsListViewModel() as T
+                return NewsListViewModel(application) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
