@@ -1,7 +1,8 @@
-package com.lorenzo.stonksnews.database
+package com.lorenzo.stonksnews.database.converters
 
 
 import androidx.room.TypeConverter
+import com.lorenzo.stonksnews.api.MarketauxNetwork
 import com.lorenzo.stonksnews.model.NewsItem
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -9,7 +10,7 @@ import com.squareup.moshi.Types
 class NewsItemListConverter {
     private val newsType = Types.newParameterizedType(List::class.java, NewsItem::class.java)
 
-    private val moshi = Moshi.Builder().build()
+    private val moshi = MarketauxNetwork.moshi
 
     private val newsAdapter = moshi.adapter<List<NewsItem>>(newsType)
 

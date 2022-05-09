@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="newsItem"
             type="com.lorenzo.stonksnews.model.NewsItem" />
@@ -11,49 +12,52 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/dialog_holo_light_frame">
 
         <ImageView
             android:id="@+id/ivNewsThumbnail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginStart="@dimen/standard_margin"
+            android:padding="@dimen/standard_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_foreground" />
 
-    <TextView
-        android:id="@+id/tvNewsTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/standard_margin"
-        android:layout_marginEnd="@dimen/standard_margin"
-        android:textAppearance="@style/PrimaryTextAppearance"
-        android:maxLines="3"
-        android:ellipsize="end"
-        app:layout_constraintBottom_toTopOf="@+id/tvNewsDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivNewsThumbnail"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/standard_margin"
-        tools:text="Some news title"
-        android:text="@{newsItem.title}"/>
+        <TextView
+            android:id="@+id/tvNewsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginEnd="@dimen/standard_margin"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{newsItem.title}"
+            android:textAppearance="@style/PrimaryTextAppearance"
+            app:layout_constraintBottom_toTopOf="@+id/tvNewsDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivNewsThumbnail"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Some news title" />
 
-    <TextView
-        android:id="@+id/tvNewsDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/standard_margin"
-        android:layout_marginEnd="@dimen/standard_margin"
-        android:layout_marginTop="@dimen/standard_margin"
-        android:ellipsize="end"
-        android:textAppearance="@style/SecondaryTextAppearance"
-        android:maxLines="2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivNewsThumbnail"
-        app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"
-        tools:text="Some news description that says something"
-        android:text="@{newsItem.description}"/>
+        <TextView
+            android:id="@+id/tvNewsDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_quarter_margin"
+            android:layout_marginEnd="@dimen/standard_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{newsItem.spannedDescription}"
+            android:textAppearance="@style/SecondaryTextAppearance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivNewsThumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"
+            tools:text="Some news description that says something" />
 
         <TextView
             android:id="@+id/tvNewsDateAndSource"

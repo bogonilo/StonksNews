@@ -1,6 +1,7 @@
-package com.lorenzo.stonksnews.database
+package com.lorenzo.stonksnews.database.converters
 
 import androidx.room.TypeConverter
+import com.lorenzo.stonksnews.api.MarketauxNetwork
 import com.lorenzo.stonksnews.model.EntityItem
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -8,7 +9,7 @@ import com.squareup.moshi.Types
 class EntityItemListConverter {
     private val entitiesType = Types.newParameterizedType(List::class.java, EntityItem::class.java)
 
-    private val moshi = Moshi.Builder().build()
+    private val moshi = MarketauxNetwork.moshi
 
     private val entitiesAdapter = moshi.adapter<List<EntityItem>>(entitiesType)
 

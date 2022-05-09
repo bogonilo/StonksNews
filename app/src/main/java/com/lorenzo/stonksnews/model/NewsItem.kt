@@ -1,10 +1,12 @@
 package com.lorenzo.stonksnews.model
 
+import android.text.Spanned
+import androidx.core.text.HtmlCompat
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.lorenzo.stonksnews.database.EntityItemListConverter
-import com.lorenzo.stonksnews.database.NewsItemListConverter
+import com.lorenzo.stonksnews.database.converters.EntityItemListConverter
+import com.lorenzo.stonksnews.database.converters.NewsItemListConverter
 import com.squareup.moshi.JsonClass
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,6 +35,11 @@ data class NewsItem constructor(
             .format(timeStampMillis)
 
         return "$date, $source"
+    }
+
+    val spannedDescription: Spanned
+    get() {
+        return HtmlCompat.fromHtml(description, HtmlCompat.FROM_HTML_MODE_COMPACT)
     }
 
     val timeStampMillis: Long?
