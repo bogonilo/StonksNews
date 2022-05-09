@@ -29,13 +29,22 @@ data class NewsItem constructor(
     val entities: List<EntityItem>,
     val similar: List<NewsItem>?
 ) {
-    val formattedSourceAndDate: String
-    get() {
-        val date = SimpleDateFormat("HH:mm dd/MM/yy", Locale.getDefault())
+    val formattedDate: String
+    get() = SimpleDateFormat("HH:mm dd/MM/yy", Locale.getDefault())
             .format(timeStampMillis)
 
-        return "$date, $source"
+    val formattedSourceAndDate: String
+    get() {
+        return "$formattedDate, $source"
     }
+
+    val spannedUrl: Spanned
+    get() {
+        val htmlText = "<a href=\"$url\">$url</a>"
+
+        return HtmlCompat.fromHtml(htmlText, HtmlCompat.FROM_HTML_MODE_COMPACT)
+    }
+
 
     val spannedDescription: Spanned
     get() {
