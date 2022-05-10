@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.lorenzo.stonksnews.R
 import com.lorenzo.stonksnews.databinding.FragmentNewsDetailBinding
-import com.lorenzo.stonksnews.viewModel.MainActivityViewModel
+import com.lorenzo.stonksnews.viewModel.NewsDetailViewModel
 
 class NewsDetailFragment : Fragment() {
     private var binding: FragmentNewsDetailBinding? = null
 
-    private val mainActivityViewModel by activityViewModels<MainActivityViewModel>()
+    private val newsDetailViewModel by activityViewModels<NewsDetailViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +23,7 @@ class NewsDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNewsDetailBinding.inflate(inflater, container, false)
-        binding?.newsItem = mainActivityViewModel.newsItem
+        binding?.newsItem = newsDetailViewModel.newsItem
 
         return binding?.root
     }
@@ -31,8 +33,11 @@ class NewsDetailFragment : Fragment() {
 
         binding?.ivNewsThumbnail?.let {
             Glide.with(it.context)
-                .load(mainActivityViewModel.newsItem?.image_url)
+                .load(newsDetailViewModel.newsItem?.image_url)
                 .into(it)
+        }
+        binding?.btFullArticle?.setOnClickListener {
+            findNavController().navigate(R.id.action_news_detail_fragment_to_fullArticleFragment)
         }
     }
 }

@@ -13,19 +13,28 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/dialog_holo_light_frame">
+        android:background="@drawable/background_rounded_grey"
+        android:layout_margin="@dimen/standard_quarter_margin">
 
-        <ImageView
-            android:id="@+id/ivNewsThumbnail"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvNewsThumbnail"
+            android:layout_marginStart="@dimen/standard_half_margin"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginStart="@dimen/standard_margin"
-            android:padding="@dimen/standard_quarter_margin"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_launcher_foreground" />
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/ivNewsThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvNewsTitle"
@@ -33,14 +42,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/standard_margin"
             android:layout_marginTop="@dimen/standard_margin"
-            android:layout_marginEnd="@dimen/standard_margin"
+            android:layout_marginEnd="@dimen/standard_half_margin"
             android:ellipsize="end"
             android:maxLines="3"
             android:text="@{newsItem.title}"
             android:textAppearance="@style/PrimaryTextAppearance"
             app:layout_constraintBottom_toTopOf="@+id/tvNewsDescription"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivNewsThumbnail"
+            app:layout_constraintStart_toEndOf="@id/cvNewsThumbnail"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Some news title" />
 
@@ -50,13 +59,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/standard_margin"
             android:layout_marginTop="@dimen/standard_quarter_margin"
-            android:layout_marginEnd="@dimen/standard_margin"
+            android:layout_marginEnd="@dimen/standard_half_margin"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@{newsItem.spannedDescription}"
             android:textAppearance="@style/SecondaryTextAppearance"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivNewsThumbnail"
+            app:layout_constraintStart_toEndOf="@id/cvNewsThumbnail"
             app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"
             tools:text="Some news description that says something" />
 
@@ -66,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/standard_margin"
             android:layout_marginTop="@dimen/standard_half_margin"
-            android:layout_marginEnd="@dimen/standard_margin"
+            android:layout_marginEnd="@dimen/standard_half_margin"
             android:layout_marginBottom="@dimen/standard_margin"
             android:ellipsize="end"
             android:gravity="end"
@@ -74,7 +83,7 @@
             android:textAppearance="@style/ThirdTextAppearance"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivNewsThumbnail"
+            app:layout_constraintStart_toEndOf="@+id/cvNewsThumbnail"
             app:layout_constraintTop_toBottomOf="@id/tvNewsDescription"
             tools:text="Reuters, 05/09/22" />
 

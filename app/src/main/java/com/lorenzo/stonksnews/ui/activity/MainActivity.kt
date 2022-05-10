@@ -1,13 +1,13 @@
-package com.lorenzo.stonksnews
+package com.lorenzo.stonksnews.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.lorenzo.stonksnews.R
 import com.lorenzo.stonksnews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

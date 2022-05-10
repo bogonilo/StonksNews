@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.lorenzo.stonksnews.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class StocksFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 

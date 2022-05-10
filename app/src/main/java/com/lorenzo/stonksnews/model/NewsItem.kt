@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.lorenzo.stonksnews.database.converters.EntityItemListConverter
 import com.lorenzo.stonksnews.database.converters.NewsItemListConverter
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,9 +29,9 @@ data class NewsItem constructor(
     val relevance_score: Float?,
     val entities: List<EntityItem>,
     val similar: List<NewsItem>?
-) {
+): Serializable {
     val formattedDate: String
-    get() = SimpleDateFormat("HH:mm dd/MM/yy", Locale.getDefault())
+    get() = SimpleDateFormat("HH:mm, dd/MM/yyyy", Locale.getDefault())
             .format(timeStampMillis)
 
     val formattedSourceAndDate: String
