@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lorenzo.stonksnews.databinding.FragmentHomeBinding
-import com.lorenzo.stonksnews.model.NewsItem
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.ui.activity.NewsDetailActivity
 import com.lorenzo.stonksnews.ui.adapter.BaseAdapter
 import com.lorenzo.stonksnews.ui.adapter.NewsListAdapter

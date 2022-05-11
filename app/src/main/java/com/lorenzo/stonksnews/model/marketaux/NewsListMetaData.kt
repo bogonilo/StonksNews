@@ -1,4 +1,4 @@
-package com.lorenzo.stonksnews.model
+package com.lorenzo.stonksnews.model.marketaux
 
 import com.squareup.moshi.JsonClass
 

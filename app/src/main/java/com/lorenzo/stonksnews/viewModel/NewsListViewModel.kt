@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.lorenzo.stonksnews.database.StonksDatabase
-import com.lorenzo.stonksnews.model.NewsItem
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.repository.NewsListRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -16,7 +16,7 @@ class NewsListViewModel(application: Application) : AndroidViewModel(application
     get() {
         viewModelScope.launch {
             try {
-                repository.refreshNews()
+//                repository.refreshNews()
             } catch (error: IOException) {
                 Log.e("StonksNews", error.message ?: "error executing refreshNews")
             }

@@ -2,9 +2,8 @@ package com.lorenzo.stonksnews.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.lorenzo.stonksnews.databinding.ItemNewsBinding
-import com.lorenzo.stonksnews.model.NewsItem
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.ui.viewHolder.NewsItemViewHolder
 
 class NewsListAdapter(onClickListener: OnClickListener<NewsItem>) :

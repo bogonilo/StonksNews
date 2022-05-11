@@ -3,14 +3,11 @@ package com.lorenzo.stonksnews.viewModel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.lorenzo.stonksnews.api.ArticleFetcher
 import com.lorenzo.stonksnews.database.StonksDatabase
 import com.lorenzo.stonksnews.model.ArticleBody
-import com.lorenzo.stonksnews.model.NewsItem
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.repository.ArticleBodyRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.IOException
 
 class NewsDetailViewModel(application: Application) : AndroidViewModel(application) {

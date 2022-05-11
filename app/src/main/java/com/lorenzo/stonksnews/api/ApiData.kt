@@ -1,11 +1,18 @@
 package com.lorenzo.stonksnews.api
 
-private const val API_TOKEN = "igfBgnrjqFTNShnpxP7K8moAQPcg2e49b9juOXHp"
+const val MARKETAUX_API_TOKEN = "igfBgnrjqFTNShnpxP7K8moAQPcg2e49b9juOXHp"
 
-private const val BASE_LANGUAGE = "en"
+const val YAHOO_FINANCE_API_TOKEN = "wpy1Y4mKy09dS625K1hUW6RVyB4jFfhT46uuqMbn"
 
-const val API_QUERY = "?api_token=$API_TOKEN&language=$BASE_LANGUAGE"
+const val BASE_LANGUAGE = "en"
 
-const val BASE_URL = "https://api.marketaux.com/v1/"
+const val MARKETAUX_API_QUERY_LANGUAGE = "language"
 
-//const val LIST_QUERY = "$API_QUERY?limit=3"
+const val MARKETAUX_API_QUERY_TOKEN = "api_token"
+
+const val MARKETAUX_BASE_URL = "api.marketaux.com"
+
+const val YAHOO_FINANCE_BASE_URL = "https://yfapi.net"
+
+const val YAHOO_FINANCE_HEADER_API_TOKEN_NAME = "X-API-KEY"
+

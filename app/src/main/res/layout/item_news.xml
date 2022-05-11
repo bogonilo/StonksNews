@@ -7,7 +7,7 @@
 
         <variable
             name="newsItem"
-            type="com.lorenzo.stonksnews.model.NewsItem" />
+            type="com.lorenzo.stonksnews.model.marketaux.NewsItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

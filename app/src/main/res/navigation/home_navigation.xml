@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.lorenzo.stonksnews.ui.dashboard.StocksFragment"
+        android:name="com.lorenzo.stonksnews.ui.stocks.StocksFragment"
         android:label="@string/title_stocks"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_stocks" />
 
     <fragment
         android:id="@+id/navigation_notifications"

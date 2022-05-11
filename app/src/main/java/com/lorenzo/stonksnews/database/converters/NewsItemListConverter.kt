@@ -3,8 +3,7 @@ package com.lorenzo.stonksnews.database.converters
 
 import androidx.room.TypeConverter
 import com.lorenzo.stonksnews.api.MarketauxNetwork
-import com.lorenzo.stonksnews.model.NewsItem
-import com.squareup.moshi.Moshi
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.squareup.moshi.Types
 
 class NewsItemListConverter {

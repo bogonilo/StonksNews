@@ -2,8 +2,7 @@ package com.lorenzo.stonksnews.database.converters
 
 import androidx.room.TypeConverter
 import com.lorenzo.stonksnews.api.MarketauxNetwork
-import com.lorenzo.stonksnews.model.EntityItem
-import com.squareup.moshi.Moshi
+import com.lorenzo.stonksnews.model.marketaux.EntityItem
 import com.squareup.moshi.Types
 
 class EntityItemListConverter {

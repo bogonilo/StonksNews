@@ -1,7 +1,6 @@
-package com.lorenzo.stonksnews.model
+package com.lorenzo.stonksnews.model.marketaux
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.squareup.moshi.JsonClass
 import java.io.Serializable
 

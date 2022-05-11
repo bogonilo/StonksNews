@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.lorenzo.stonksnews.model.ArticleBody
-import com.lorenzo.stonksnews.model.NewsItem
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 
 @Database(entities = [NewsItem::class, ArticleBody::class], version = StonksDatabase.DATABASE_LAST_VERSION)
 abstract class StonksDatabase : RoomDatabase() {

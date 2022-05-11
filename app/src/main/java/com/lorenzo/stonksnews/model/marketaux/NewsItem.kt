@@ -1,4 +1,4 @@
-package com.lorenzo.stonksnews.model
+package com.lorenzo.stonksnews.model.marketaux
 
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
@@ -31,7 +31,7 @@ data class NewsItem constructor(
     val similar: List<NewsItem>?
 ): Serializable {
     val formattedDate: String
-    get() = SimpleDateFormat("HH:mm, dd/MM/yyyy", Locale.getDefault())
+    get() = SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss", Locale.getDefault())
             .format(timeStampMillis)
 
     val formattedSourceAndDate: String

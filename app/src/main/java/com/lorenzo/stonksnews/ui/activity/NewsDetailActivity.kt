@@ -9,7 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.lorenzo.stonksnews.R
 import com.lorenzo.stonksnews.databinding.ActivityNewsDetailBinding
-import com.lorenzo.stonksnews.model.NewsItem
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.viewModel.NewsDetailViewModel
 
 class NewsDetailActivity : AppCompatActivity() {

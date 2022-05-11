@@ -3,7 +3,7 @@ package com.lorenzo.stonksnews.repository
 import androidx.lifecycle.LiveData
 import com.lorenzo.stonksnews.api.MarketauxNetwork
 import com.lorenzo.stonksnews.database.StonksDatabase
-import com.lorenzo.stonksnews.model.NewsItem
+import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
