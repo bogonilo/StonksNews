@@ -10,8 +10,8 @@ import com.lorenzo.stonksnews.model.NewsItem
 @Dao
 interface NewsListDao {
     @Query("select * from newsitem")
-    fun getVideos(): LiveData<List<NewsItem>>
+    fun getNews(): LiveData<List<NewsItem>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(videos: List<NewsItem>)
+    fun insertAll(news: List<NewsItem>)
 }

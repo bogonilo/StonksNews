@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_rounded_grey"
+        android:background="@drawable/background_rounded_white"
         android:layout_margin="@dimen/standard_quarter_margin">
 
         <androidx.cardview.widget.CardView

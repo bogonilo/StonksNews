@@ -1,17 +1,21 @@
 package com.lorenzo.stonksnews.ui.newsDetail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.lorenzo.stonksnews.databinding.FragmentFullArticleBinding
+import com.lorenzo.stonksnews.util.isInternetConnected
 import com.lorenzo.stonksnews.viewModel.NewsDetailViewModel
 
 
@@ -30,12 +34,34 @@ class FullArticleFragment : Fragment() {
         return binding?.root
     }
 
+    // I want javaScript to be enabled anyway, since the sources of the articles should be trustable
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.wvWebView?.settings?.javaScriptEnabled = true
+        binding?.wvWebView?.settings?.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            cacheMode = WebSettings.LOAD_NO_CACHE
+        }
         binding?.wvWebView?.webViewClient = MyWebViewClient()
-        newsDetailViewModel.newsItem?.url?.let { binding?.wvWebView?.loadUrl(it) }
+//        newsDetailViewModel.newsItem?.url?.let { binding?.wvWebView?.loadUrl(it) }
+        loadFullArticle()
+    }
+
+    private fun loadFullArticle() {
+        val articleUrl = newsDetailViewModel.newsItem?.url ?: return
+        val articleBody = newsDetailViewModel.articleBody
+
+        if (context?.isInternetConnected() == true) {
+            binding?.wvWebView?.loadUrl(articleUrl)
+        } else {
+            articleBody?.observe(viewLifecycleOwner) {
+                it?.let { articleBody ->
+                    binding?.wvWebView?.loadData(articleBody.body, "text/html", "UTF-8")
+                } ?: kotlin.run { Toast.makeText(context, "Article was not cached", Toast.LENGTH_LONG).show() }
+            }
+        }
     }
 
     private inner class MyWebViewClient : WebViewClient() {

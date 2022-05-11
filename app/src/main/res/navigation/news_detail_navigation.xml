@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/news_detail_fragment"
         android:name="com.lorenzo.stonksnews.ui.newsDetail.NewsDetailFragment"
-        android:label="NewsDetailFragment"
+        android:label="News Detail"
         tools:layout="@layout/fragment_news_detail">
         <action
             android:id="@+id/action_news_detail_fragment_to_fullArticleFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/fullArticleFragment"
         android:name="com.lorenzo.stonksnews.ui.newsDetail.FullArticleFragment"
-        android:label="FullArticleFragment"
+        android:label="Full Article"
         tools:layout="@layout/fragment_full_article"/>
 </navigation>
