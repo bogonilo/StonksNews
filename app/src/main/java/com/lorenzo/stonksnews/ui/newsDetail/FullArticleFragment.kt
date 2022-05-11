@@ -45,10 +45,15 @@ class FullArticleFragment : Fragment() {
             cacheMode = WebSettings.LOAD_NO_CACHE
         }
         binding?.wvWebView?.webViewClient = MyWebViewClient()
-//        newsDetailViewModel.newsItem?.url?.let { binding?.wvWebView?.loadUrl(it) }
         loadFullArticle()
     }
 
+    /*
+    Since the rest of the news logic works well in absence of internet connection I decided to store
+    locally also a version of the article body, that I get through a simple OkHTTP request.
+    Obviously I don't get also all the dynamic resources linked to it (CSS, JS, images) so it just
+    displays some unformatted HTML. This could be an improvement point
+     */
     private fun loadFullArticle() {
         val articleUrl = newsDetailViewModel.newsItem?.url ?: return
         val articleBody = newsDetailViewModel.articleBody
@@ -58,8 +63,16 @@ class FullArticleFragment : Fragment() {
         } else {
             articleBody?.observe(viewLifecycleOwner) {
                 it?.let { articleBody ->
-                    binding?.wvWebView?.loadData(articleBody.body, "text/html", "UTF-8")
-                } ?: kotlin.run { Toast.makeText(context, "Article was not cached", Toast.LENGTH_LONG).show() }
+                    binding?.wvWebView?.loadDataWithBaseURL(
+                        null,
+                        articleBody.body,
+                        "text/html",
+                        "utf-8",
+                        null
+                    )
+                } ?: run {
+                    Toast.makeText(context, "Article was not cached", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
