@@ -1,7 +1,9 @@
 package com.lorenzo.stonksnews.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.lorenzo.stonksnews.api.MarketauxNetwork
+import com.lorenzo.stonksnews.api.YFApiNetwork
 import com.lorenzo.stonksnews.database.StonksDatabase
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import kotlinx.coroutines.Dispatchers

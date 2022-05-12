@@ -16,7 +16,7 @@ class NewsListViewModel(application: Application) : AndroidViewModel(application
     get() {
         viewModelScope.launch {
             try {
-//                repository.refreshNews()
+                repository.refreshNews()
             } catch (error: IOException) {
                 Log.e("StonksNews", error.message ?: "error executing refreshNews")
             }

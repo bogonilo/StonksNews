@@ -18,4 +18,13 @@ interface StocksDao {
         @Insert(onConflict = REPLACE)
         fun insertAll(symbols: List<TrendingSymbols>)
     }
+
+    @Dao
+    interface StockHistoryDao {
+        @Query("select * from stockhistory")
+        fun getSymbols(): LiveData<List<TrendingSymbols>>
+
+        @Insert(onConflict = REPLACE)
+        fun insertAll(symbols: List<TrendingSymbols>)
+    }
 }

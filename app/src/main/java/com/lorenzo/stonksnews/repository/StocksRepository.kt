@@ -9,6 +9,7 @@ import androidx.lifecycle.asLiveData
 import com.lorenzo.stonksnews.api.YFApiNetwork
 import com.lorenzo.stonksnews.database.StonksDatabase
 import com.lorenzo.stonksnews.database.USER_REGION_SELECTED
+import com.lorenzo.stonksnews.model.yfapi.StockHistory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -55,6 +56,10 @@ class StocksRepository(
             val response = YFApiNetwork.yahooFinance.getTrendingSymbols(region)
             database.trendingSymbolsDao.insertAll(response.finance.result)
         }
+    }
+
+    suspend fun loadStockHistory(symbols: String): Map<String, StockHistory> {
+        return YFApiNetwork.yahooFinance.getSymbolsValues(symbols)
     }
 
     private suspend fun saveUserRegionToPreferencesStore(region: String) {

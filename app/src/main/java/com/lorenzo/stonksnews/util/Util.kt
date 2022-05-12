@@ -6,9 +6,11 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.view.View
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import com.lorenzo.stonksnews.R
+import com.lorenzo.stonksnews.model.yfapi.StockHistory
 
 fun Context.isInternetConnected(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager

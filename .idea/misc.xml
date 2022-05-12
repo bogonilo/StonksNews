@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/layout/fragment_stocks.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_news.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_region.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_stock.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.38645833333333335" />
       </map>
     </option>
