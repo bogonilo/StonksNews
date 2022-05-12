@@ -1,4 +1,4 @@
-package com.lorenzo.stonksnews.database.converters
+package com.lorenzo.stonksnews.api.converters
 
 import androidx.room.TypeConverter
 import com.lorenzo.stonksnews.api.MarketauxNetwork

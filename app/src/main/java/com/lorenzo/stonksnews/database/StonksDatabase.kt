@@ -4,16 +4,24 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.AutoMigrationSpec
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.lorenzo.stonksnews.model.ArticleBody
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
+import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
 
-@Database(entities = [NewsItem::class, ArticleBody::class], version = StonksDatabase.DATABASE_LAST_VERSION)
+@Database(entities = [
+    NewsItem::class,
+    ArticleBody::class,
+    TrendingSymbols::class
+                     ], version = StonksDatabase.DATABASE_LAST_VERSION)
 abstract class StonksDatabase : RoomDatabase() {
     abstract val articleBodyDao: NewsArticleDao
 
     abstract val newsListDao: NewsListDao
+
+    abstract val trendingSymbolsDao: StocksDao.TrendingSymbolsDao
 
     companion object {
         private const val DATABASE_NAME = "stonks_db"
@@ -22,7 +30,11 @@ abstract class StonksDatabase : RoomDatabase() {
 
         private const val DATABASE_VERSION_SECOND = 2
 
-        const val DATABASE_LAST_VERSION = DATABASE_VERSION_SECOND
+        private const val DATABASE_VERSION_THREE = 3
+
+        private const val DATABASE_VERSION_FOUR = 4
+
+        const val DATABASE_LAST_VERSION = DATABASE_VERSION_FOUR
 
         private lateinit var INSTANCE: StonksDatabase
 
@@ -34,6 +46,7 @@ abstract class StonksDatabase : RoomDatabase() {
                         StonksDatabase::class.java,
                         DATABASE_NAME
                     ).addMigrations(Migration_1_2)
+                        .fallbackToDestructiveMigration()
                         .build()
                 }
             }

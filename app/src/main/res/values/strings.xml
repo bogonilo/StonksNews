@@ -4,4 +4,6 @@
     <string name="title_stocks">Stocks</string>
     <string name="title_profile">Profile</string>
     <string name="see_full_article">See full article: %s</string>
+    <string name="pick_a_region">Pick a region</string>
+    <string name="trending_symbols">Trending symbols</string>
 </resources>

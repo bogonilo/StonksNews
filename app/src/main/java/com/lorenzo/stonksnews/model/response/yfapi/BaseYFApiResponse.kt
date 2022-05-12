@@ -1,5 +1,6 @@
 package com.lorenzo.stonksnews.model.response.yfapi
 
+import androidx.lifecycle.LiveData
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

@@ -1,8 +1,14 @@
 package com.lorenzo.stonksnews.util
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Build
+import android.view.View
+import androidx.annotation.ColorRes
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import com.lorenzo.stonksnews.R
 
 fun Context.isInternetConnected(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
@@ -16,4 +22,8 @@ fun Context.isInternetConnected(): Boolean {
     }
 
     return status
+}
+
+fun View.setBackgroundTint(@ColorRes colorRes: Int) {
+    background.mutate().setTint(ContextCompat.getColor(context, colorRes))
 }

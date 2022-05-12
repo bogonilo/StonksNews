@@ -3,15 +3,19 @@ package com.lorenzo.stonksnews.ui.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lorenzo.stonksnews.ui.viewHolder.NewsItemViewHolder
 import java.util.*
+import kotlin.collections.HashMap
 
 abstract class BaseAdapter<I: Any, V: RecyclerView.ViewHolder>(
     private val onClickListener: OnClickListener<I>? = null
 ) : RecyclerView.Adapter<V>(), Comparator<I> {
     var items = listOf<I>()
         set(value) {
-            field = value.sortedWith(this).reversed()
+            field = value.sortedWith(this)
+            itemsPositionMap = HashMap(field.associateWith { field.indexOf(it) })
             notifyDataSetChanged()
         }
+
+    var itemsPositionMap = emptyMap<I, Int>()
 
     override fun compare(item1: I, item2: I): Int {
         return 0

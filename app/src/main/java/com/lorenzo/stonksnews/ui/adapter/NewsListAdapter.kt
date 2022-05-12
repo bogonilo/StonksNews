@@ -9,7 +9,7 @@ import com.lorenzo.stonksnews.ui.viewHolder.NewsItemViewHolder
 class NewsListAdapter(onClickListener: OnClickListener<NewsItem>) :
     BaseAdapter<NewsItem, NewsItemViewHolder>(onClickListener) {
     override fun compare(item1: NewsItem, item2: NewsItem): Int {
-        return item1.timeStampMillis?.compareTo(item2.timeStampMillis ?: 0) ?: -1
+        return item2.timeStampMillis?.compareTo(item1.timeStampMillis ?: 0) ?: -1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsItemViewHolder {

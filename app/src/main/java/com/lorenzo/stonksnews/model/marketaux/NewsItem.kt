@@ -5,8 +5,8 @@ import androidx.core.text.HtmlCompat
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.lorenzo.stonksnews.database.converters.EntityItemListConverter
-import com.lorenzo.stonksnews.database.converters.NewsItemListConverter
+import com.lorenzo.stonksnews.api.converters.EntityItemListConverter
+import com.lorenzo.stonksnews.api.converters.NewsItemListConverter
 import com.squareup.moshi.JsonClass
 import java.io.Serializable
 import java.text.SimpleDateFormat
