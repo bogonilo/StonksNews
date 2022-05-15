@@ -5,8 +5,7 @@ import androidx.core.text.HtmlCompat
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.lorenzo.stonksnews.api.converters.EntityItemListConverter
-import com.lorenzo.stonksnews.api.converters.NewsItemListConverter
+import com.lorenzo.stonksnews.database.converters.SimpleListConverter
 import com.squareup.moshi.JsonClass
 import java.io.Serializable
 import java.text.SimpleDateFormat
@@ -14,7 +13,8 @@ import java.util.*
 
 @JsonClass(generateAdapter = true)
 @Entity
-@TypeConverters(EntityItemListConverter::class, NewsItemListConverter::class)
+@TypeConverters(SimpleListConverter.EntityItemListConverter::class,
+    SimpleListConverter.NewsItemListConverter::class)
 data class NewsItem constructor(
     @PrimaryKey val uuid: String,
     val title: String,

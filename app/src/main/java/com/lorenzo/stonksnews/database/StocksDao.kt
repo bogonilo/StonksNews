@@ -7,24 +7,26 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
+import com.lorenzo.stonksnews.model.yfapi.StockHistory
 import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
 
 interface StocksDao {
     @Dao
-    interface TrendingSymbolsDao {
-        @Query("select * from trendingsymbols")
-        fun getSymbols(): LiveData<List<TrendingSymbols>>
+    interface RegionQuotesDao {
+        @Query("select * from regionquotesdb where region=:region")
+        fun getSymbols(region: String): RegionQuotesDb
 
         @Insert(onConflict = REPLACE)
-        fun insertAll(symbols: List<TrendingSymbols>)
+        fun insertAll(quotes: RegionQuotesDb)
     }
 
     @Dao
     interface StockHistoryDao {
-        @Query("select * from stockhistory")
-        fun getSymbols(): LiveData<List<TrendingSymbols>>
+        @Query("select * from stockhistory where symbol in (:symbols)")
+        fun getStocksHistory(symbols: List<String>): List<StockHistory>?
 
         @Insert(onConflict = REPLACE)
-        fun insertAll(symbols: List<TrendingSymbols>)
+        fun insertAll(symbols: List<StockHistory>)
     }
 }

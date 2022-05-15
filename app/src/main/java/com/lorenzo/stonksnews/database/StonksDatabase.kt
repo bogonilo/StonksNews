@@ -4,24 +4,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.AutoMigrationSpec
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.lorenzo.stonksnews.model.ArticleBody
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
+import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
+import com.lorenzo.stonksnews.model.yfapi.StockHistory
 import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
 
 @Database(entities = [
     NewsItem::class,
     ArticleBody::class,
-    TrendingSymbols::class
-                     ], version = StonksDatabase.DATABASE_LAST_VERSION)
+    StockHistory::class,
+    RegionQuotesDb::class], version = StonksDatabase.DATABASE_LAST_VERSION)
 abstract class StonksDatabase : RoomDatabase() {
     abstract val articleBodyDao: NewsArticleDao
 
     abstract val newsListDao: NewsListDao
 
-    abstract val trendingSymbolsDao: StocksDao.TrendingSymbolsDao
+    abstract val regionQuotesDao: StocksDao.RegionQuotesDao
+
+    abstract val stockHistoryDao: StocksDao.StockHistoryDao
 
     companion object {
         private const val DATABASE_NAME = "stonks_db"
@@ -34,7 +37,13 @@ abstract class StonksDatabase : RoomDatabase() {
 
         private const val DATABASE_VERSION_FOUR = 4
 
-        const val DATABASE_LAST_VERSION = DATABASE_VERSION_FOUR
+        private const val DATABASE_VERSION_FIVE = 5
+
+        private const val DATABASE_VERSION_SIX = 6
+
+        private const val DATABASE_VERSION_SEVEN = 7
+
+        const val DATABASE_LAST_VERSION = DATABASE_VERSION_SEVEN
 
         private lateinit var INSTANCE: StonksDatabase
 

@@ -10,7 +10,10 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import com.lorenzo.stonksnews.R
+import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
 import com.lorenzo.stonksnews.model.yfapi.StockHistory
+import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
+import com.lorenzo.stonksnews.model.yfapi.TrendingSymbolsDatabase
 
 fun StockHistory.getArrowDrawable(context: Context): Drawable? {
     return if (change > 0) {
@@ -36,4 +39,10 @@ fun Context.isInternetConnected(): Boolean {
 
 fun View.setBackgroundTint(@ColorRes colorRes: Int) {
     background.mutate().setTint(ContextCompat.getColor(context, colorRes))
+}
+
+fun List<TrendingSymbols>.toDatabaseModel(region: String): RegionQuotesDb? {
+    return firstOrNull()?.quotes?.let {
+        RegionQuotesDb(region, it)
+    }
 }

@@ -12,8 +12,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*
 
 object MarketauxNetwork {
-    val moshi = Moshi.Builder().build()
-
     private val retrofit: Retrofit
     get() {
         val builder = OkHttpClient.Builder()

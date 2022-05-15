@@ -1,11 +1,14 @@
 package com.lorenzo.stonksnews.ui.stocks
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,11 +24,19 @@ class StocksFragment : Fragment(), BaseAdapter.OnClickListener<String> {
         get() = _binding
             ?: error("This property is only valid between onCreateView and onDestroyView.")
 
+    private var recyclerViewScrollHandler: Handler? = Handler(Looper.getMainLooper())
+
     private val regionAdapter = RegionAdapter(this)
+
+    private var selectedRegion: String = DEFAULT_SELECTED_REGION
 
     private val stocksItemAdapter = StockItemAdapter()
 
     private val stocksViewModel by viewModels<StocksViewModel>()
+
+    companion object {
+        private const val DEFAULT_SELECTED_REGION = "US"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,10 +49,9 @@ class StocksFragment : Fragment(), BaseAdapter.OnClickListener<String> {
     }
 
     override fun onItemClicked(item: String) {
-        regionAdapter.setNewSelectedRegion(item)
-        stocksViewModel.loadTrendingSymbols(item)
+        selectedRegion = item
         stocksItemAdapter.items = emptyList()
-        binding.rvRegion.smoothScrollToPosition(0)
+        stocksViewModel.saveUserRegionToPreferencesStore(item)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,14 +61,30 @@ class StocksFragment : Fragment(), BaseAdapter.OnClickListener<String> {
         binding.rvTrendingSymbols.adapter = stocksItemAdapter
 
         stocksViewModel.selectedRegion.observe(viewLifecycleOwner) {
-            it?.let { region -> regionAdapter.setNewSelectedRegion(region)}
+            it?.let { region ->
+                selectedRegion = region
+            }
+
+            stocksViewModel.loadTrendingSymbols(selectedRegion)
+            regionAdapter.setNewSelectedRegion(selectedRegion)
             regionAdapter.items = stocksViewModel.regions
+            recyclerViewScrollHandler?.postDelayed({
+                binding.rvRegion.scrollToPosition(0)
+            }, 600)
         }
 
         stocksViewModel.trendingSymbols.observe(viewLifecycleOwner) { symbol ->
             val symbols = symbol?.quotes?.map { it.symbol } ?: return@observe
-            stocksViewModel.loadStockValues(symbols.joinToString(",")) {
-                stocksItemAdapter.items = it.values.toList()
+            stocksViewModel.loadStockValues(symbols)
+        }
+
+        stocksViewModel.stockHistory.observe(viewLifecycleOwner) {
+            stocksItemAdapter.items = it ?: emptyList()
+        }
+
+        stocksViewModel.errorLimitReached.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "API limit reached :(", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -66,6 +92,7 @@ class StocksFragment : Fragment(), BaseAdapter.OnClickListener<String> {
     override fun onDestroyView() {
         super.onDestroyView()
 
+        recyclerViewScrollHandler = null
         _binding = null
     }
 }

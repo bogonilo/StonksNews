@@ -8,8 +8,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object YFApiNetwork {
-    val moshi = Moshi.Builder().build()
-
     private val retrofit: Retrofit
         get() {
             val builder = OkHttpClient.Builder()
