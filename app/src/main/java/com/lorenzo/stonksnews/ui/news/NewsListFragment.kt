@@ -1,21 +1,21 @@
-package com.lorenzo.stonksnews.ui.home
+package com.lorenzo.stonksnews.ui.news
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lorenzo.stonksnews.databinding.FragmentHomeBinding
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.ui.activity.NewsDetailActivity
-import com.lorenzo.stonksnews.ui.adapter.BaseAdapter
 import com.lorenzo.stonksnews.ui.adapter.NewsListAdapter
 import com.lorenzo.stonksnews.viewModel.NewsListViewModel
 
-class HomeFragment : Fragment(), NewsListAdapter.Listener {
+class NewsListFragment : Fragment(), NewsListAdapter.Listener {
     private val adapter = NewsListAdapter(this)
 
     private var _binding: FragmentHomeBinding? = null
@@ -65,6 +65,12 @@ class HomeFragment : Fragment(), NewsListAdapter.Listener {
         binding.rvNews.layoutManager = LinearLayoutManager(context)
         viewModel.allNews.observe(viewLifecycleOwner) {
             adapter.items = it
+        }
+
+        viewModel.errorLimitReached.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "API limit reached :(", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

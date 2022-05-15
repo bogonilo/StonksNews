@@ -2,8 +2,10 @@
     <string name="app_name">StonksNews</string>
     <string name="title_home">News</string>
     <string name="title_stocks">Stocks</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_preferences">Preferences</string>
     <string name="see_full_article">See full article: %s</string>
     <string name="pick_a_region">Pick a region</string>
     <string name="trending_symbols">Trending symbols</string>
+    <string name="insert_your_favorite_symbols">Insert your favorite symbols</string>
+    <string name="examply_symbols_input">E.g. TSLA, AAPL, MSFT</string>
 </resources>

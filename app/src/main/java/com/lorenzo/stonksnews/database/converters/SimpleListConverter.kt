@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.lorenzo.stonksnews.api.MarketauxNetwork
 import com.lorenzo.stonksnews.api.YFApiNetwork
 import com.lorenzo.stonksnews.api.moshi
+import com.lorenzo.stonksnews.model.FavoriteSymbol
 import com.lorenzo.stonksnews.model.marketaux.EntityItem
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.model.yfapi.Quote

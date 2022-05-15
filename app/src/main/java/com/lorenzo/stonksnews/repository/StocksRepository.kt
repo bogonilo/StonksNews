@@ -9,6 +9,7 @@ import androidx.lifecycle.asLiveData
 import com.lorenzo.stonksnews.api.YFApiNetwork
 import com.lorenzo.stonksnews.database.StonksDatabase
 import com.lorenzo.stonksnews.database.USER_REGION_SELECTED
+import com.lorenzo.stonksnews.model.FavoriteSymbol
 import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
 import com.lorenzo.stonksnews.model.yfapi.StockHistory
 import com.lorenzo.stonksnews.util.toDatabaseModel
@@ -43,7 +44,7 @@ class StocksRepository(
         private const val REGION_IN = "IN"
     }
 
-    val errorLimitReached = MutableLiveData<Boolean>(false)
+    val favoriteSymbols = database.favoriteSymbolsDao.getSymbols()
 
     val regions = listOf(REGION_AU, REGION_CA, REGION_DE, REGION_ES, REGION_FR,
         REGION_GB, REGION_HK, REGION_IN, REGION_IT, REGION_US)
@@ -65,16 +66,18 @@ class StocksRepository(
             preferences[USER_REGION_SELECTED]
         }.asLiveData()
 
+    suspend fun insertNewFavoriteSymbol(symbol: String) {
+        withContext(Dispatchers.IO) {
+            database.favoriteSymbolsDao.insert(FavoriteSymbol(symbol))
+        }
+    }
+
     suspend fun loadSymbols(region: String) {
-        try {
-            withContext(Dispatchers.IO) {
-                val response = YFApiNetwork.yahooFinance.getTrendingSymbols(region)
-                response.finance.result.toDatabaseModel(region)?.let {
-                    database.regionQuotesDao.insertAll(it)
-                }
+        withContext(Dispatchers.IO) {
+            val response = YFApiNetwork.yahooFinance.getTrendingSymbols(region)
+            response.finance.result.toDatabaseModel(region)?.let {
+                database.regionQuotesDao.insertAll(it)
             }
-        } catch (httpException: HttpException) {
-            errorLimitReached.value = httpException.code() == 429
         }
     }
 
@@ -82,6 +85,12 @@ class StocksRepository(
         withContext(Dispatchers.IO) {
             val stocksMap = YFApiNetwork.yahooFinance.getSymbolsValues(symbols)
             database.stockHistoryDao.insertAll(stocksMap.values.toList())
+        }
+    }
+
+    suspend fun removeFavorite(favoriteSymbol: FavoriteSymbol) {
+        withContext(Dispatchers.IO) {
+            database.favoriteSymbolsDao.removeFavorite(favoriteSymbol)
         }
     }
 

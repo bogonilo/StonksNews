@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="value"
+            type="String" />
+    </data>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/standard_margin"
+    android:background="@drawable/background_rounded_white"
+    tools:text="AAPL"
+    android:textAppearance="@style/PrimaryTextAppearance"
+    android:drawablePadding="@dimen/standard_margin"
+    android:text="@{value}"
+    app:drawableEndCompat="@drawable/ic_baseline_close_24" />
+
+</layout>

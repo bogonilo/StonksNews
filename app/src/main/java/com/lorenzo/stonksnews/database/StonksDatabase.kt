@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.lorenzo.stonksnews.database.converters.SimpleListConverter
 import com.lorenzo.stonksnews.model.ArticleBody
+import com.lorenzo.stonksnews.model.FavoriteSymbol
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
 import com.lorenzo.stonksnews.model.yfapi.StockHistory
@@ -16,9 +19,12 @@ import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
     NewsItem::class,
     ArticleBody::class,
     StockHistory::class,
-    RegionQuotesDb::class], version = StonksDatabase.DATABASE_LAST_VERSION)
+    RegionQuotesDb::class,
+    FavoriteSymbol::class], version = StonksDatabase.DATABASE_LAST_VERSION)
 abstract class StonksDatabase : RoomDatabase() {
     abstract val articleBodyDao: NewsArticleDao
+
+    abstract val favoriteSymbolsDao: StocksDao.FavoriteSymbols
 
     abstract val newsListDao: NewsListDao
 

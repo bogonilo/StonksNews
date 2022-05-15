@@ -3,17 +3,14 @@ package com.lorenzo.stonksnews.util
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
-import android.os.Build
 import android.view.View
 import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import com.lorenzo.stonksnews.R
 import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
 import com.lorenzo.stonksnews.model.yfapi.StockHistory
 import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
-import com.lorenzo.stonksnews.model.yfapi.TrendingSymbolsDatabase
 
 fun StockHistory.getArrowDrawable(context: Context): Drawable? {
     return if (change > 0) {

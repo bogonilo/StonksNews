@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.lorenzo.stonksnews.ui.home.HomeFragment"
+        android:name="com.lorenzo.stonksnews.ui.news.NewsListFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.lorenzo.stonksnews.ui.notifications.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.lorenzo.stonksnews.ui.preferences.PreferencesFragment"
+        android:label="@string/title_preferences"
+        tools:layout="@layout/fragment_preferences" />
 </navigation>
