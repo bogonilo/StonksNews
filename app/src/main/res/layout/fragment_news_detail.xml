@@ -18,62 +18,67 @@
         <ImageView
             android:id="@+id/ivNewsThumbnail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/news_detail_image_dimension"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_foreground" />
 
-        <TextView
-            android:id="@+id/tvNewsDate"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/llNewsTextContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/standard_half_margin"
-            android:paddingBottom="@dimen/standard_double_margin"
-            android:paddingStart="@dimen/standard_margin"
-            android:paddingEnd="@dimen/standard_margin"
-            android:layout_marginBottom="@dimen/standard_margin"
-            android:textColor="@color/black"
-            android:ellipsize="end"
-            android:gravity="end"
-            android:background="@drawable/background_gradient_white_transparent"
-            android:text="@{newsItem.formattedDate}"
-            android:textAppearance="@style/ThirdTextAppearance.Bold"
+            android:orientation="vertical"
+            android:layout_marginTop="-16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Reuters, 05/09/22" />
+            app:layout_constraintTop_toBottomOf="@id/ivNewsThumbnail"
+            android:background="@drawable/background_rounded_top_white">
+
+            <TextView
+                android:id="@+id/tvNewsDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/standard_half_margin"
+                android:paddingBottom="@dimen/standard_half_margin"
+                android:paddingStart="@dimen/standard_margin"
+                android:paddingEnd="@dimen/standard_margin"
+                android:textColor="@color/colorSecondary"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:text="@{newsItem.formattedDate}"
+                android:textAppearance="@style/ThirdTextAppearance.Bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Reuters, 05/09/22" />
 
         <TextView
             android:id="@+id/tvNewsTitle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/standard_margin"
-            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_half_margin"
             android:layout_marginEnd="@dimen/standard_margin"
             android:ellipsize="end"
             android:maxLines="3"
             android:text="@{newsItem.title}"
             android:textAppearance="@style/PrimaryTextAppearance"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivNewsThumbnail"
             tools:text="Some news title" />
 
         <TextView
             android:id="@+id/tvNewsDescription"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/standard_margin"
             android:layout_marginTop="@dimen/standard_half_margin"
             android:layout_marginEnd="@dimen/standard_margin"
             android:text="@{newsItem.spannedDescription}"
             android:textAppearance="@style/SecondaryTextAppearance"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"
             tools:text="Some news description that says something" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvNewsSource"

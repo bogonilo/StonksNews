@@ -12,6 +12,14 @@ import androidx.core.content.ContextCompat
 import com.lorenzo.stonksnews.R
 import com.lorenzo.stonksnews.model.yfapi.StockHistory
 
+fun StockHistory.getArrowDrawable(context: Context): Drawable? {
+    return if (change > 0) {
+        AppCompatResources.getDrawable(context, R.drawable.ic_baseline_keyboard_arrow_up_24)
+    } else {
+        AppCompatResources.getDrawable(context, R.drawable.ic_baseline_keyboard_arrow_down_24)
+    }
+}
+
 fun Context.isInternetConnected(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
     var status = false

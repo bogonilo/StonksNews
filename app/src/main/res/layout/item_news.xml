@@ -19,10 +19,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cvNewsThumbnail"
             android:layout_marginStart="@dimen/standard_half_margin"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/standard_half_margin"
+            android:layout_marginTop="@dimen/standard_half_margin"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/news_item_image_dimension"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp">
@@ -47,27 +49,23 @@
             android:maxLines="3"
             android:text="@{newsItem.title}"
             android:textAppearance="@style/PrimaryTextAppearance"
-            app:layout_constraintBottom_toTopOf="@+id/tvNewsDescription"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cvNewsThumbnail"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cvNewsThumbnail"
             tools:text="Some news title" />
 
-        <TextView
-            android:id="@+id/tvNewsDescription"
-            android:layout_width="0dp"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShare"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/standard_margin"
-            android:layout_marginTop="@dimen/standard_quarter_margin"
-            android:layout_marginEnd="@dimen/standard_half_margin"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@{newsItem.spannedDescription}"
-            android:textAppearance="@style/SecondaryTextAppearance"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cvNewsThumbnail"
-            app:layout_constraintTop_toBottomOf="@+id/tvNewsTitle"
-            tools:text="Some news description that says something" />
+            android:padding="@dimen/standard_quarter_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvNewsTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_baseline_share_24"
+            android:layout_marginBottom="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_half_margin"
+            android:layout_marginStart="@dimen/standard_margin"/>
 
         <TextView
             android:id="@+id/tvNewsDateAndSource"
@@ -76,15 +74,14 @@
             android:layout_marginStart="@dimen/standard_margin"
             android:layout_marginTop="@dimen/standard_half_margin"
             android:layout_marginEnd="@dimen/standard_half_margin"
-            android:layout_marginBottom="@dimen/standard_margin"
             android:ellipsize="end"
             android:gravity="end"
             android:text="@{newsItem.formattedSourceAndDate}"
             android:textAppearance="@style/ThirdTextAppearance"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/ivShare"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cvNewsThumbnail"
-            app:layout_constraintTop_toBottomOf="@id/tvNewsDescription"
+            app:layout_constraintStart_toEndOf="@id/ivShare"
+            app:layout_constraintTop_toBottomOf="@id/tvNewsTitle"
             tools:text="Reuters, 05/09/22" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

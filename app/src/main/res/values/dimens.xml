@@ -1,10 +1,10 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="standard_half_margin">8dp</dimen>
     <dimen name="standard_quarter_margin">4dp</dimen>
+    <dimen name="negative_standard_margin">-16dp</dimen>
     <dimen name="standard_margin">16dp</dimen>
     <dimen name="standard_double_margin">32dp</dimen>
     <dimen name="padding_bottom_home_navigation_bar">100dp</dimen>
+    <dimen name="news_item_image_dimension">230dp</dimen>
+    <dimen name="news_detail_image_dimension">260dp</dimen>
 </resources>

@@ -40,6 +40,7 @@ class StocksFragment : Fragment(), BaseAdapter.OnClickListener<String> {
     override fun onItemClicked(item: String) {
         regionAdapter.setNewSelectedRegion(item)
         stocksViewModel.loadTrendingSymbols(item)
+        stocksItemAdapter.items = emptyList()
         binding.rvRegion.smoothScrollToPosition(0)
     }
 

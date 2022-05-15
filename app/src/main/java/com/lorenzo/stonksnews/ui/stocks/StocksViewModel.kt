@@ -37,7 +37,8 @@ class StocksViewModel(application: Application) : AndroidViewModel(application) 
 
     fun loadStockValues(symbols: String, onResponse: (Map<String, StockHistory>) -> Unit) {
         viewModelScope.launch {
-            onResponse(repository.loadStockHistory(symbols))
+            val response = repository.loadStockHistory(symbols)
+            onResponse(response)
         }
     }
 }

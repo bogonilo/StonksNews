@@ -1,30 +1,32 @@
 package com.lorenzo.stonksnews.model.yfapi
 
+import android.graphics.drawable.Drawable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.lorenzo.stonksnews.R
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.text.NumberFormat
 
 @Entity
 @JsonClass(generateAdapter = true)
 data class StockHistory(
     @PrimaryKey val symbol: String,
     val timestamp: List<Long>,
-    @Json(name = "close") val values: List<Float>
+    @Json(name = "close") val values: List<Float?>
 ) {
     val change: Float
-    get() = (values.last() - values.first())/values.first()
+    get() {
+        val firstValue = values.firstOrNull { it != null } ?: return 0f
+        val lastValue = values.lastOrNull { it != null } ?: return 0f
+
+        return (lastValue - firstValue)/firstValue
+    }
 
     val changePercentage: String
-    get() = change.toString()
-
-
-    fun toArrowDrawable(): Int {
-        return if (change > 0) {
-            R.drawable.ic_baseline_keyboard_arrow_up_24
-        } else {
-            R.drawable.ic_baseline_keyboard_arrow_down_24
-        }
+    get() {
+        val formatter = NumberFormat.getInstance()
+        formatter.maximumFractionDigits = 2
+        return formatter.format(change * 100) + " %"
     }
 }

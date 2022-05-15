@@ -1,11 +1,11 @@
 package com.lorenzo.stonksnews.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lorenzo.stonksnews.databinding.FragmentHomeBinding
@@ -13,19 +13,15 @@ import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.ui.activity.NewsDetailActivity
 import com.lorenzo.stonksnews.ui.adapter.BaseAdapter
 import com.lorenzo.stonksnews.ui.adapter.NewsListAdapter
-import com.lorenzo.stonksnews.viewModel.NewsDetailViewModel
 import com.lorenzo.stonksnews.viewModel.NewsListViewModel
 
-class HomeFragment : Fragment(), BaseAdapter.OnClickListener<NewsItem> {
+class HomeFragment : Fragment(), NewsListAdapter.Listener {
     private val adapter = NewsListAdapter(this)
 
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    private val mainActivityViewModel by activityViewModels<NewsDetailViewModel>()
+    private val binding get() = _binding
+        ?: error("This property is only valid between onCreateView and onDestroyView.")
 
     private val viewModel: NewsListViewModel by lazy {
         val application = activity?.application
@@ -36,7 +32,6 @@ class HomeFragment : Fragment(), BaseAdapter.OnClickListener<NewsItem> {
             NewsListViewModel.Factory(application)
         )[NewsListViewModel::class.java]
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +49,15 @@ class HomeFragment : Fragment(), BaseAdapter.OnClickListener<NewsItem> {
         _binding = null
     }
 
+    override fun onNewsClicked(newsItem: NewsItem) {
+        val context = context ?: return
+        startActivity(NewsDetailActivity.newIntent(context, newsItem))
+    }
+
+    override fun onShareNewsClicked(newsItem: NewsItem) {
+        shareNews(newsItem)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -64,8 +68,13 @@ class HomeFragment : Fragment(), BaseAdapter.OnClickListener<NewsItem> {
         }
     }
 
-    override fun onItemClicked(item: NewsItem) {
-        val context = context ?: return
-        startActivity(NewsDetailActivity.newIntent(context, item))
+    private fun shareNews(newsItem: NewsItem) {
+        val share = Intent(Intent.ACTION_SEND)
+        share.type = "text/plain"
+
+        share.putExtra(Intent.EXTRA_SUBJECT, newsItem.title)
+        share.putExtra(Intent.EXTRA_TEXT, newsItem.url)
+
+        startActivity(Intent.createChooser(share, "Share"))
     }
 }
