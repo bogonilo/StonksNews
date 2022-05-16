@@ -35,7 +35,7 @@ class NewsListViewModel(application: Application) : AndroidViewModel(application
         viewModelScope.launch {
             try {
                 repository.refreshNews(filterBySymbol, favoriteSymbols)
-            }  catch (error: Exception) {
+            } catch (error: Exception) {
                 if (error is HttpException && error.code() == 429) {
                     errorLimitReached.value = true
                 } else if(error is IOException) {

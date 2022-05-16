@@ -32,7 +32,7 @@ class NewsListRepository(
         withContext(Dispatchers.IO) {
             val newsListResponse = if (filterBySymbol) {
                 MarketauxNetwork.marketaux.getAllNews(
-                    favoriteSymbols.map { it.value }.joinToString(",")
+                    favoriteSymbols.joinToString(",") { it.value }
                 )
             } else {
                 MarketauxNetwork.marketaux.getAllNews()
