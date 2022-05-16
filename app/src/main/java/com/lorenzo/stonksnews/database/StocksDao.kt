@@ -1,15 +1,14 @@
 package com.lorenzo.stonksnews.database
 
-import androidx.annotation.IntegerRes
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
-import com.lorenzo.stonksnews.database.converters.SimpleListConverter
+import androidx.room.Query
 import com.lorenzo.stonksnews.model.FavoriteSymbol
 import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
 import com.lorenzo.stonksnews.model.yfapi.StockHistory
-import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
 
 interface StocksDao {
     @Dao

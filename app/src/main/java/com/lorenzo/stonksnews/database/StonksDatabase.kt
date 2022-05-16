@@ -4,16 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.lorenzo.stonksnews.database.converters.SimpleListConverter
 import com.lorenzo.stonksnews.model.ArticleBody
 import com.lorenzo.stonksnews.model.FavoriteSymbol
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.model.yfapi.RegionQuotesDb
 import com.lorenzo.stonksnews.model.yfapi.StockHistory
-import com.lorenzo.stonksnews.model.yfapi.TrendingSymbols
 
 @Database(entities = [
     NewsItem::class,

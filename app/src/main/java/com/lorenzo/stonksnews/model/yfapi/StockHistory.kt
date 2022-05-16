@@ -1,11 +1,8 @@
 package com.lorenzo.stonksnews.model.yfapi
 
-import android.graphics.drawable.Drawable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
-import com.lorenzo.stonksnews.R
 import com.lorenzo.stonksnews.database.converters.SimpleListConverter
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

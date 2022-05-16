@@ -1,10 +1,8 @@
 package com.lorenzo.stonksnews.database.converters
 
 import androidx.room.TypeConverter
-import com.lorenzo.stonksnews.api.MarketauxNetwork
 import com.lorenzo.stonksnews.api.moshi
 import com.squareup.moshi.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class DateTypeConverter {

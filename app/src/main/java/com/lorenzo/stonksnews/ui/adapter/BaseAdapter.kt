@@ -1,9 +1,6 @@
 package com.lorenzo.stonksnews.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.lorenzo.stonksnews.ui.viewHolder.NewsItemViewHolder
-import java.util.*
-import kotlin.collections.HashMap
 
 abstract class BaseAdapter<I: Any, V: RecyclerView.ViewHolder>(
     private val onClickListener: OnClickListener<I>? = null

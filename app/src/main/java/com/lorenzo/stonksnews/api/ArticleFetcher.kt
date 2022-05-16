@@ -2,7 +2,6 @@ package com.lorenzo.stonksnews.api
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.lang.Exception
 
 
 object ArticleFetcher {

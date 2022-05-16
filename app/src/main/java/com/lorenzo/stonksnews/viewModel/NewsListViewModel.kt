@@ -9,7 +9,6 @@ import com.lorenzo.stonksnews.repository.NewsListRepository
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
-import java.lang.Exception
 
 class NewsListViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = NewsListRepository(StonksDatabase.getDatabase(application))

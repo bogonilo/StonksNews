@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import com.google.android.material.textfield.TextInputEditText
 import com.lorenzo.stonksnews.databinding.FragmentPreferencesBinding
 import com.lorenzo.stonksnews.model.FavoriteSymbol
 import com.lorenzo.stonksnews.ui.adapter.BaseAdapter

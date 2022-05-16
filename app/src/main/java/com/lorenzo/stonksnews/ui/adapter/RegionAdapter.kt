@@ -2,7 +2,6 @@ package com.lorenzo.stonksnews.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import com.lorenzo.stonksnews.databinding.ItemRegionBinding
 import com.lorenzo.stonksnews.ui.viewHolder.RegionViewHolder
 

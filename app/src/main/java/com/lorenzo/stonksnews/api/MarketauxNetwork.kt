@@ -2,14 +2,10 @@ package com.lorenzo.stonksnews.api
 
 import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import com.lorenzo.stonksnews.BuildConfig
-import com.squareup.moshi.Moshi
 import okhttp3.HttpUrl
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.*
 
 object MarketauxNetwork {
     private val retrofit: Retrofit

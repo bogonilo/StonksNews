@@ -11,7 +11,6 @@ import com.lorenzo.stonksnews.repository.StocksRepository
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
-import java.lang.Exception
 
 class StocksViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = StocksRepository(

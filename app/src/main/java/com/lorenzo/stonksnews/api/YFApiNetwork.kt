@@ -2,7 +2,6 @@ package com.lorenzo.stonksnews.api
 
 import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import com.lorenzo.stonksnews.BuildConfig
-import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

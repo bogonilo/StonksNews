@@ -4,7 +4,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.lorenzo.stonksnews.api.YFApiNetwork
 import com.lorenzo.stonksnews.database.StonksDatabase
@@ -16,7 +15,6 @@ import com.lorenzo.stonksnews.util.toDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
 
 class StocksRepository(
     private val database: StonksDatabase,
