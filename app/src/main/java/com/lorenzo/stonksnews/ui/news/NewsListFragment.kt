@@ -82,10 +82,8 @@ class NewsListFragment : Fragment(), NewsListAdapter.Listener {
         viewModel.filterNewsBySymbol.observe(viewLifecycleOwner) { filterByFavorite ->
             filterBySymbol = filterByFavorite
 
-
             if (filterByFavorite) {
                 viewModel.favoriteSymbols.observe(viewLifecycleOwner) {
-                    adapter.items = emptyList()
                     binding.pbLoading.isVisible = true
                     viewModel.refreshNews(true, it)
                 }

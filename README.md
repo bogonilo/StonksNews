@@ -16,4 +16,10 @@ Both APIs are used in their free version which come with a lot of limiting. You 
 https://www.marketaux.com/pricing, while for YHFinance here, https://www.yahoofinanceapi.com/pricing
 
 ## Some implementation details
-
+This app uses the repository pattern to provide offline caching in case of absence of network data.
+It has been implemented using:
+- The data persistence library, Room.
+- Using the Retrofit networking library.
+- The basic Android Architecture Components, ViewModel, ViewModelFactory, and LiveData.
+- Building and launching a coroutine.
+- Binding adapters in data binding.
