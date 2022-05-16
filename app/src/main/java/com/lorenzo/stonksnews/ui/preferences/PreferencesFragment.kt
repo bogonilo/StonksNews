@@ -5,6 +5,8 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.flexbox.FlexDirection
@@ -64,9 +66,21 @@ class PreferencesFragment : Fragment(), BaseAdapter.OnClickListener<FavoriteSymb
         binding.rvFavoriteSymbols.adapter = favoriteSymbolAdapter
         viewModel.favoriteSymbols.observe(viewLifecycleOwner) {
             favoriteSymbolAdapter.items = it
+            binding.scNewsTypeSelector.isVisible = it.isNotEmpty()
+        }
+
+        viewModel.filterNewsBySymbol.observe(viewLifecycleOwner) {
+            binding.scNewsTypeSelector.isChecked = it
         }
 
         binding.tietSymbolsInput.setOnKeyListener(OnEnterKeyListener())
+        binding.scNewsTypeSelector.setOnCheckedChangeListener(OnCheckListener())
+    }
+
+    private inner class OnCheckListener : CompoundButton.OnCheckedChangeListener {
+        override fun onCheckedChanged(view: CompoundButton?, checked: Boolean) {
+            viewModel.setNewsFilterPreference(checked)
+        }
     }
 
     private inner class OnEnterKeyListener : View.OnKeyListener {

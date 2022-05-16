@@ -9,6 +9,9 @@ import com.lorenzo.stonksnews.model.marketaux.NewsItem
 
 @Dao
 interface NewsListDao {
+    @Query("delete from newsitem")
+    fun clearTable()
+
     @Query("select * from newsitem")
     fun getNews(): LiveData<List<NewsItem>>
 

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lorenzo.stonksnews.databinding.FragmentHomeBinding
+import com.lorenzo.stonksnews.model.FavoriteSymbol
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.ui.activity.NewsDetailActivity
 import com.lorenzo.stonksnews.ui.adapter.NewsListAdapter
@@ -22,6 +23,10 @@ class NewsListFragment : Fragment(), NewsListAdapter.Listener {
 
     private val binding get() = _binding
         ?: error("This property is only valid between onCreateView and onDestroyView.")
+
+    private var favoriteSymbols = emptyList<FavoriteSymbol>()
+
+    private var filterBySymbol = false
 
     private val viewModel: NewsListViewModel by lazy {
         val application = activity?.application
@@ -70,6 +75,20 @@ class NewsListFragment : Fragment(), NewsListAdapter.Listener {
         viewModel.errorLimitReached.observe(viewLifecycleOwner) {
             if (it) {
                 Toast.makeText(context, "API limit reached :(", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        viewModel.filterNewsBySymbol.observe(viewLifecycleOwner) { filterByFavorite ->
+            filterBySymbol = filterByFavorite
+
+            if (filterByFavorite) {
+                viewModel.favoriteSymbols.observe(viewLifecycleOwner) {
+                    favoriteSymbols = it
+                    adapter.items = emptyList()
+                    viewModel.refreshNews(true, it)
+                }
+            } else {
+                viewModel.refreshNews(false)
             }
         }
     }

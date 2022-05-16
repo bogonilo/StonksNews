@@ -33,19 +33,32 @@
             android:inputType="text"
             android:textAllCaps="true"
             android:hint="@string/examply_symbols_input"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavoriteSymbols"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/standard_margin"
         android:orientation="horizontal"
         tools:itemCount="4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilSymbolsContainer"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_favorite_symbol"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/scNewsTypeSelector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/preference_news_type_selector"
+        android:layout_margin="@dimen/standard_margin"
+        android:textAppearance="@style/PrimaryTextAppearance"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvFavoriteSymbols" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

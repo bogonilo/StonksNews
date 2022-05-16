@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.lorenzo.stonksnews.api.YFApiNetwork
+import com.lorenzo.stonksnews.database.FILTER_NEWS_BY_FAVORITE_SYMBOLS
 import com.lorenzo.stonksnews.database.StonksDatabase
 import com.lorenzo.stonksnews.database.USER_REGION_SELECTED
 import com.lorenzo.stonksnews.model.FavoriteSymbol
@@ -46,6 +47,11 @@ class StocksRepository(
 
     val regions = listOf(REGION_AU, REGION_CA, REGION_DE, REGION_ES, REGION_FR,
         REGION_GB, REGION_HK, REGION_IN, REGION_IT, REGION_US)
+
+    fun getNewsFilterFromPreferencesStore(): LiveData<Boolean> =
+        dataStore.data.map { preferences ->
+            preferences[FILTER_NEWS_BY_FAVORITE_SYMBOLS] ?: false
+        }.asLiveData()
 
     suspend fun getStocksHistory(symbols: List<String>): List<StockHistory>? {
         return withContext(Dispatchers.IO) {
@@ -89,6 +95,21 @@ class StocksRepository(
     suspend fun removeFavorite(favoriteSymbol: FavoriteSymbol) {
         withContext(Dispatchers.IO) {
             database.favoriteSymbolsDao.removeFavorite(favoriteSymbol)
+        }
+    }
+
+    suspend fun saveNewsFilterToPreferencesStore(filterByFavoriteSymbols: Boolean) {
+        withContext(Dispatchers.IO) {
+            dataStore.edit { preferences ->
+                preferences[FILTER_NEWS_BY_FAVORITE_SYMBOLS] = filterByFavoriteSymbols
+            }
+
+            /*
+            Clearing the news table in case the user changed its preference about what kind of news
+            to show
+            todo: change logic to just use a different query to fetch the correct data from database
+             */
+            database.newsListDao.clearTable()
         }
     }
 

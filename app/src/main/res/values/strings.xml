@@ -8,4 +8,5 @@
     <string name="trending_symbols">Trending symbols</string>
     <string name="insert_your_favorite_symbols">Insert your favorite symbols</string>
     <string name="examply_symbols_input">E.g. TSLA, AAPL, MSFT</string>
+    <string name="preference_news_type_selector">Filter news by your favorite symbols</string>
 </resources>
