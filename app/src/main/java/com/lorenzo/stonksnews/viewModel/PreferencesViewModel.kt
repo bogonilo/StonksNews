@@ -14,12 +14,9 @@ class PreferencesViewModel(application: Application) : AndroidViewModel(applicat
         application.userPreferencesDataStore
     )
 
-    private val _favoriteSymbols: LiveData<List<FavoriteSymbol>> = repository.favoriteSymbols
-    val favoriteSymbols: LiveData<List<FavoriteSymbol>> = _favoriteSymbols
+    val favoriteSymbols: LiveData<List<FavoriteSymbol>> = repository.favoriteSymbols
 
-    private val _filterNewsBySymbol: LiveData<Boolean> =
-        repository.getNewsFilterFromPreferencesStore()
-    val filterNewsBySymbol: LiveData<Boolean> = _filterNewsBySymbol
+    val filterNewsBySymbol = repository.getNewsFilterFromPreferencesStore()
 
     fun insertFavoriteSymbol(symbol: String) {
         viewModelScope.launch {

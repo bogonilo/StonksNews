@@ -18,18 +18,21 @@ class StocksViewModel(application: Application) : AndroidViewModel(application) 
         application.userPreferencesDataStore
     )
 
-    val errorLimitReached = MutableLiveData<Boolean>(false)
+    private val _errorLimitReached = MutableLiveData<Boolean>(false)
+    val errorLimitReached: LiveData<Boolean> = _errorLimitReached
 
     val regions = repository.regions
 
     val selectedRegion = repository.getUserRegionFromPreferencesStore()
 
-    var stockHistory = MutableLiveData<List<StockHistory>?>()
+    private val _stockHistory = MutableLiveData<List<StockHistory>?>()
+    val stockHistory: LiveData<List<StockHistory>?> = _stockHistory
 
-    var trendingSymbols = MutableLiveData<RegionQuotesDb>()
+    private val _trendingSymbols = MutableLiveData<RegionQuotesDb>()
+    val trendingSymbols: LiveData<RegionQuotesDb> = _trendingSymbols
 
     private suspend fun setTrendingSymbols(selectedRegion: String) {
-        trendingSymbols.value = repository.getRegionQuotes(selectedRegion)
+        _trendingSymbols.value = repository.getRegionQuotes(selectedRegion)
     }
 
     fun loadTrendingSymbols(region: String) {
@@ -38,7 +41,7 @@ class StocksViewModel(application: Application) : AndroidViewModel(application) 
                 repository.loadSymbols(region)
             } catch (error: Exception) {
                 if (error is HttpException && error.code() == 429) {
-                    errorLimitReached.value = true
+                    _errorLimitReached.value = true
                 } else if(error is IOException) {
                     Log.e("StonksNews", error.message ?: "error executing loadTrendingSymbols")
                 }
@@ -54,12 +57,12 @@ class StocksViewModel(application: Application) : AndroidViewModel(application) 
                 repository.loadStockHistory(symbols.joinToString(","))
             } catch (error: Exception) {
                 if (error is HttpException && error.code() == 429) {
-                    errorLimitReached.value = true
+                    _errorLimitReached.value = true
                 } else if(error is IOException) {
                     Log.e("StonksNews", error.message ?: "error executing loadStockValues")
                 }
-            }finally {
-                stockHistory.value = repository.getStocksHistory(symbols)
+            } finally {
+                _stockHistory.value = repository.getStocksHistory(symbols)
             }
         }
     }

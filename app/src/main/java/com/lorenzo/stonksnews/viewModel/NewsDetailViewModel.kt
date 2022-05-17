@@ -29,8 +29,7 @@ class NewsDetailViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private var _newsItem: NewsItem? = null
-    val newsItem: NewsItem?
-    get() = _newsItem
+    val newsItem: NewsItem? = _newsItem
 
     fun setNewsItemSelected(item: NewsItem) {
         _newsItem = item

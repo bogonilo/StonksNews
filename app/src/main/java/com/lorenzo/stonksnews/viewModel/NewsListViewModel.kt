@@ -20,7 +20,8 @@ class NewsListViewModel(application: Application) : AndroidViewModel(application
 
     val allNews: LiveData<List<NewsItem>> = repository.news
 
-    val errorLimitReached = MutableLiveData<Boolean>(false)
+    private val _errorLimitReached = MutableLiveData<Boolean>(false)
+    val errorLimitReached: LiveData<Boolean> = _errorLimitReached
 
     private val _favoriteSymbols = repository.getFavoriteSymbols()
     val favoriteSymbols: LiveData<List<FavoriteSymbol>> = _favoriteSymbols
@@ -37,7 +38,7 @@ class NewsListViewModel(application: Application) : AndroidViewModel(application
                 repository.refreshNews(filterBySymbol, favoriteSymbols)
             } catch (error: Exception) {
                 if (error is HttpException && error.code() == 429) {
-                    errorLimitReached.value = true
+                    _errorLimitReached.value = true
                 } else if(error is IOException) {
                     Log.e("StonksNews", error.message ?: "error executing refreshNews")
                 }

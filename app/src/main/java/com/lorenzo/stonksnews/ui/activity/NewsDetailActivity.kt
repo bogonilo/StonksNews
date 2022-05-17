@@ -5,17 +5,24 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.lorenzo.stonksnews.R
 import com.lorenzo.stonksnews.databinding.ActivityNewsDetailBinding
 import com.lorenzo.stonksnews.model.marketaux.NewsItem
 import com.lorenzo.stonksnews.viewModel.NewsDetailViewModel
+import com.lorenzo.stonksnews.viewModel.NewsListViewModel
 
 class NewsDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsDetailBinding
 
-    private val newsDetailViewModel by viewModels<NewsDetailViewModel>()
+    private val newsDetailViewModel: NewsDetailViewModel by lazy {
+        ViewModelProvider(
+            this,
+            NewsDetailViewModel.Factory(application)
+        )[NewsDetailViewModel::class.java]
+    }
 
     companion object {
         private const val EXTRA_NEWS_ITEM = "NEWS_ITEM"

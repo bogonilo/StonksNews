@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.lorenzo.stonksnews.databinding.FragmentStocksBinding
 import com.lorenzo.stonksnews.ui.adapter.BaseAdapter
 import com.lorenzo.stonksnews.ui.adapter.RegionAdapter
 import com.lorenzo.stonksnews.ui.adapter.StockItemAdapter
+import com.lorenzo.stonksnews.viewModel.NewsDetailViewModel
 import com.lorenzo.stonksnews.viewModel.StocksViewModel
 
 class StocksFragment : Fragment(), BaseAdapter.OnClickListener<String> {
@@ -31,7 +33,15 @@ class StocksFragment : Fragment(), BaseAdapter.OnClickListener<String> {
 
     private val stocksItemAdapter = StockItemAdapter()
 
-    private val stocksViewModel by viewModels<StocksViewModel>()
+    private val stocksViewModel: StocksViewModel by lazy {
+        val application = activity?.application
+            ?: error("You can only access the viewModel after onActivityCreated()")
+
+        ViewModelProvider(
+            this,
+            StocksViewModel.Factory(application)
+        )[StocksViewModel::class.java]
+    }
 
     companion object {
         private const val DEFAULT_SELECTED_REGION = "US"
